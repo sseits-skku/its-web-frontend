@@ -1,0 +1,136 @@
+<template lang="pug">
+  v-navigation-drawer(
+    v-model="dOpen"
+    app
+    :permanent="dPerm"
+    width="280px"
+  )
+    v-toolbar(
+      color="red lighten-3"
+      dark
+      min-height="60px"
+      max-height="80px"
+    )
+      v-spacer/
+      v-btn(
+        class="elevation-0"
+        color="transparent"
+        :ripple="false"
+        large
+        @click.native="goPage('/')"
+      )
+        div(class="display-1") SSE-ITS
+      v-spacer/
+    v-list(
+      flat
+      dense
+    )
+      v-list-item-group
+        template(
+          v-if="$store.state.auth.username !== '' | true"
+        )
+          v-list-item(
+            v-for="item in allItems"
+            :key="item.title"
+            @click="goPage(item.id)"
+          )
+            v-list-item-icon
+              v-icon(v-text="item.icon")
+            v-list-item-content
+              v-list-item-title(v-text="item.title")
+        template(
+          v-if="$store.state.auth.username !== '' | true"
+        )
+          v-divider()
+          v-subheader(inset class="text-center subtitle-1") Member Zone
+          v-list-item(
+            v-for="item in memberItems"
+            :key="item.title"
+            @click="goPage(item.id)"
+          )
+            v-list-item-icon
+              v-icon(v-text="item.icon")
+            v-list-item-content
+              v-list-item-title(v-text="item.title")
+        template(
+          v-if="$store.state.auth.isStaff | true"
+        )
+          v-divider()
+          v-subheader(inset class="text-center subtitle-1") Staff Zone
+          v-list-item(
+            v-for="item in staffItems"
+            :key="item.title"
+            @click="goPage(item.id)"
+          )
+            v-list-item-icon
+              v-icon(v-text="item.icon")
+            v-list-item-content
+              v-list-item-title(v-text="item.title")
+    template(v-slot:append)
+      div(
+        v-if="$store.state.auth.username === ''"
+        class="px-2 pb-2"
+      )
+        v-btn(color="red lighten-3" block @click="openDialog")
+          v-icon(left) mdi-lock-open
+          | MEMBER LOGIN
+      div(
+        v-if="$store.state.auth.username !== ''"
+        class="px-2 pb-2"
+      )
+        v-btn(color="red lighten-3" block @click="logout")
+          v-icon(left) mdi-logout-variant
+          | LOGOUT
+</template>
+<script>
+export default {
+  data () {
+    return {
+      allItems: [
+        { id: 'aboutus', title: 'SSE-ITS 소개', icon: 'mdi-help-circle' },
+        { id: 'project', title: '프로젝트', icon: 'mdi-transit-connection-variant' },
+        { id: 'education', title: '교육자료', icon: 'mdi-book-open-page-variant' },
+        { id: 'people', title: '구성원', icon: 'mdi-account-supervisor-circle' },
+        { id: 'recruit', title: '지원하기', icon: 'mdi-account-heart-outline' }
+      ],
+      memberItems: [
+        { id: 'timetable', title: 'OH 시간표', icon: 'mdi-calendar' },
+        { id: 'agenda', title: '안건게시판', icon: 'mdi-gavel' },
+        { id: 'gallery', title: '갤러리', icon: 'mdi-image-multiple' },
+        { id: 'vote', title: '투표', icon: 'mdi-vote' }
+      ],
+      staffItems: [
+        { id: 'inventory', title: '비품관리', icon: 'mdi-package-variant' },
+        { id: 'finance', title: '재무업무', icon: 'mdi-cash-100' }
+      ]
+    }
+  },
+  computed: {
+    dOpen: {
+      get () { return this.$store.state.drawerOpen },
+      set (value) { this.$store.commit('setDrawerOpen', value) }
+    },
+    dPerm: {
+      get () { return this.$store.state.drawerPerm },
+      set (value) { this.$store.commit('setDrawerPerm', value) }
+    }
+  },
+  methods: {
+    logout () {
+      this.$store.commit('auth/logout', this.$vuetify)
+    },
+    openDialog () {
+      this.$store.commit('setLoginDialogOpen', true)
+    },
+    goPage (id) {
+      this.$router.push(id).catch(() => {})
+    }
+  }
+}
+</script>
+
+<style scoped>
+.v-simple-table .thead {
+  background-color: black;
+}
+</style>
