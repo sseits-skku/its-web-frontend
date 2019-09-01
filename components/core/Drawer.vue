@@ -32,7 +32,7 @@
           v-list-item(
             v-for="item in allItems"
             :key="item.title"
-            @click="goPage(item.id)"
+            @click.native="goPage(item.id)"
           )
             v-list-item-icon
               v-icon(v-text="item.icon")
@@ -46,7 +46,7 @@
           v-list-item(
             v-for="item in memberItems"
             :key="item.title"
-            @click="goPage(item.id)"
+            @click.native="goPage(item.id)"
           )
             v-list-item-icon
               v-icon(v-text="item.icon")
@@ -60,7 +60,7 @@
           v-list-item(
             v-for="item in staffItems"
             :key="item.title"
-            @click="goPage(item.id)"
+            @click.native="goPage(item.id)"
           )
             v-list-item-icon
               v-icon(v-text="item.icon")
@@ -123,7 +123,7 @@ export default {
       this.$store.commit('setLoginDialogOpen', true)
     },
     goPage (id) {
-      this.$router.push(id).catch(() => {})
+      this.$router.push(id)
     }
   }
 }
