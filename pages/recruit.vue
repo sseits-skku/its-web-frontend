@@ -1,8 +1,12 @@
 <template lang="pug">
-  // Make your main page...
-  v-img(src="/img/main.png")
+  Recruit
 </template>
 
 <script>
-export default {}
+import Recruit from '@/components/recruit/Recruit'
+export default {
+  components: {
+    Recruit
+  }
+}
 </script>
