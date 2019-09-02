@@ -1,50 +1,37 @@
-<template>
-  <div>
-    <v-card
+<template lang="pug">
+  v-card(
+    max-width="280px"
+    max-height="400px"
+    class="ma-2"
+  )
+    v-img(
       max-width="280px"
-      max-height="400px"
-      class="ma-2"
-    >
-      <v-img
-        max-width="280px"
-        height="180px"
-        :src="typeof image !== undefined ? image : defaultImage"
-      >
-        <v-card-title
-          class="align-end justify-end fill-width fill-height"
-        >
-          {{ title }}
-        </v-card-title>
-      </v-img>
-      <v-card-text class="pa-2">
-        <span>기여자: {{ author }}</span><br>
-        <span
-          class="text--primary"
-        >{{ text }}</span>
-      </v-card-text>
-      <v-card-actions
-        class="pt-0"
-      >
-        <v-spacer />
-        <v-btn
-          v-show="typeof golink !== 'undefined'"
-          text
-          icon
-          :href="golink"
-        >
-          <v-icon>mdi-exit-to-app</v-icon>
-        </v-btn>
-        <v-btn
-          v-show="typeof github !== 'undefined'"
-          text
-          icon
-          :href="github"
-        >
-          <v-icon>mdi-github-box</v-icon>
-        </v-btn>
-      </v-card-actions>
-    </v-card>
-  </div>
+      height="180px"
+      :src="typeof image !== undefined ? image : defaultImage"
+    )
+      v-card-title(
+        class="align-end justify-end fill-width fill-height"
+      ) {{ title }}
+    v-card-text(class="pa-2")
+      span 기여자: {{ author }}
+      br
+      span(class="text--primary") {{ text }}
+    v-card-actions(class="pt-0")
+      v-spacer
+      v-btn(
+        v-show="typeof golink !== 'undefined'"
+        text
+        icon
+        :href="golink"
+      )
+        v-icon mdi-exit-to-app
+      v-btn(
+        v-show="typeof github !== 'undefined'"
+        text
+        icon
+        :href="github"
+      )
+        v-icon mdi-github-box
 </template>
 
 <script>

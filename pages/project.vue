@@ -1,5 +1,5 @@
-<template>
-  <Project />
+<template lang="pug">
+  Project
 </template>
 
 <script>
