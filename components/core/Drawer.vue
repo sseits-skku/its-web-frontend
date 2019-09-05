@@ -101,7 +101,8 @@ export default {
       ],
       staffItems: [
         { id: 'inventory', title: '비품관리', icon: 'mdi-package-variant' },
-        { id: 'finance', title: '재무업무', icon: 'mdi-cash-100' }
+        { id: 'finance', title: '회계관리', icon: 'mdi-cash-100' },
+        { id: 'human', title: '인사관리', icon: 'mdi-account-badge-horizontal-outline' }
       ]
     }
   },

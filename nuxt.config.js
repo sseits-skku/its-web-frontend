@@ -1,8 +1,8 @@
-import colors from 'vuetify/es5/util/colors'
 import webpack from 'webpack'
 
 export default {
-  mode: 'universal',
+  // mode: 'universal',
+  mode: 'spa',
   /*
   ** Headers of the page
   */
@@ -81,7 +81,7 @@ export default {
       font: false,
       icons: 'mdi'
     },
-    theme: {
+    theme: {/*
       themes: {
         dark: {
           primary: colors.blue.darken2,
@@ -92,7 +92,7 @@ export default {
           error: colors.deepOrange.accent4,
           success: colors.green.accent3
         }
-      }
+      } */
     }
   },
   /*

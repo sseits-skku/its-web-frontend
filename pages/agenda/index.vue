@@ -1,8 +1,12 @@
 <template lang="pug">
-  // Make your main page...
-  v-img(src="/img/main.png")
+  AgendaList
 </template>
 
 <script>
-export default {}
+import AgendaList from '@/components/agenda/AgendaList'
+export default {
+  components: {
+    AgendaList
+  }
+}
 </script>

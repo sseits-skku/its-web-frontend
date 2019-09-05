@@ -38,7 +38,7 @@ export const actions = {
     try {
       const cAuth = Cookie.get('Authorization')
       if (typeof cAuth === 'undefined') {
-        throw new TypeError('failed.')
+        throw new TypeError('not logged in.')
       }
       const auth = JSON.parse(cAuth)
       const resAccess = await this.$axios.$post('/auth/verify', {
@@ -63,11 +63,11 @@ export const actions = {
         auth.vuetify = vuetify
         context.commit('setLogin', auth)
       } else {
-        throw new TypeError('failed. ff')
+        throw new TypeError('token expired.')
       }
     } catch (err) {
       // invalid cookie and logout.
-      console.error(err)
+      console.log(err)
       context.commit('logout', vuetify)
     }
   }
