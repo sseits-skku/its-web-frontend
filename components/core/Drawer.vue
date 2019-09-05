@@ -118,7 +118,7 @@ export default {
   },
   methods: {
     logout () {
-      this.$store.commit('auth/logout', this.$vuetify)
+      this.$store.commit('auth/logout')
     },
     openDialog () {
       this.$store.commit('setLoginDialogOpen', true)

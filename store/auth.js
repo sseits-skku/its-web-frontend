@@ -13,9 +13,6 @@ export const mutations = {
     state.refreshToken = auth.refresh
     state.accessToken = auth.access
     state.isStaff = auth.isStaff
-    if (auth.isStaff) {
-      auth.vuetify.theme.dark = true
-    }
     Cookie.set('Authorization', {
       username: auth.username,
       isStaff: auth.isStaff,
@@ -23,18 +20,17 @@ export const mutations = {
       access: auth.access
     })
   },
-  logout (state, vuetify) {
+  logout (state) {
     state.username = ''
     state.refreshToken = ''
     state.accessToken = ''
     state.isStaff = false
-    vuetify.theme.dark = false
     Cookie.remove('Authorization')
   }
 }
 
 export const actions = {
-  async checkLogin (context, vuetify) {
+  async checkLogin (context) {
     try {
       const cAuth = Cookie.get('Authorization')
       if (typeof cAuth === 'undefined') {
@@ -60,7 +56,6 @@ export const actions = {
           auth.refresh = refresh
           auth.access = access
         }
-        auth.vuetify = vuetify
         context.commit('setLogin', auth)
       } else {
         throw new TypeError('token expired.')
@@ -68,7 +63,7 @@ export const actions = {
     } catch (err) {
       // invalid cookie and logout.
       console.log(err)
-      context.commit('logout', vuetify)
+      context.commit('logout')
     }
   }
 }

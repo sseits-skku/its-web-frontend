@@ -137,7 +137,7 @@ export default {
     getName (value) {
       return typeof value !== 'undefined'
         ? value.last_name + value.first_name + (
-          value.first_name.charCodeAt(value.first_name.length - 1) - 0xAC00 % 28 > 0
+          (((value.first_name.charCodeAt(value.first_name.length - 1) - 0xAC00) % 28) > 0)
             ? '이' : '가'
         )
         : '아무개가'
@@ -146,29 +146,17 @@ export default {
     timeSince (date) {
       const seconds = Math.floor((new Date() - date) / 1000)
       let interval = Math.floor(seconds / 31536000)
-      if (interval > 1) {
-        return interval + ' 년 전'
-      }
+      if (interval > 0) { return interval + '년 전' }
       interval = Math.floor(seconds / 2592000)
-      if (interval > 1) {
-        return interval + ' 달 전'
-      }
+      if (interval > 0) { return interval + '달 전' }
       interval = Math.floor(seconds / 86400)
-      if (interval > 1) {
-        return interval + ' 일 전'
-      }
+      if (interval > 0) { return interval + '일 전' }
       interval = Math.floor(seconds / 3600)
-      if (interval > 1) {
-        return interval + ' 시간 전'
-      }
+      if (interval > 0) { return interval + '시간 전' }
       interval = Math.floor(seconds / 60)
-      if (interval > 1) {
-        return interval + ' 분 전'
-      }
+      if (interval > 0) { return interval + '분 전' }
       interval = Math.floor(seconds)
-      if (interval > 20) {
-        return Math.floor(seconds) + ' 초 전'
-      }
+      if (interval > 20) { return Math.floor(seconds) + '초 전' }
       return '몇초 전'
     }
   },
@@ -212,7 +200,7 @@ export default {
     }
   },
   async mounted () {
-    await this.$store.dispatch('auth/checkLogin', this.$vuetify)
+    await this.$store.dispatch('auth/checkLogin')
     this.$axios.setHeader('Authorization', 'Bearer ' + this.$store.state.auth.accessToken)
     const labelResult = this.$axios.$get('/agenda/label/')
     const userResult = this.$axios.$get('/account/user/')
@@ -222,7 +210,6 @@ export default {
     ].concat((await labelResult).results)
     this.userList = (await userResult).results
     this.agendaList = (await agendaResult).results
-    console.log(this.agendaList)
   }
 }
 </script>

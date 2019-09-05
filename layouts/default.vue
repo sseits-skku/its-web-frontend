@@ -38,7 +38,7 @@ export default {
     }
   },
   mounted () {
-    this.$store.dispatch('auth/checkLogin', this.$vuetify)
+    this.$store.dispatch('auth/checkLogin')
     this.onResize()
     window.addEventListener('resize', this.onResize, { passive: true })
   },

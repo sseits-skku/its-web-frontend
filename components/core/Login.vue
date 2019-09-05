@@ -72,7 +72,6 @@ export default {
         this.$axios.setHeader('Authorization', 'Bearer ' + access)
         const info = await this.$axios.$get(`/account/user/${userId}`)
         this.$store.commit('auth/setLogin', {
-          vuetify: this.$vuetify,
           username: this.id,
           refresh,
           access,
