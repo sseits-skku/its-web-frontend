@@ -1,13 +1,13 @@
 <template lang="pug">
   v-simple-table(
-    class="ma-3"
+    class="ma-0"
   )
     thead
       tr
-        th(class="text-center") Date
-        th(class="text-center") Topic
-        th(class="text-center") File
-        th(class="text-center") Speaker
+        th(class="blue-grey lighten-4 text-center") Date
+        th(class="blue-grey lighten-4 text-center") Topic
+        th(class="blue-grey lighten-4 text-center") File
+        th(class="blue-grey lighten-4 text-center") Speaker
     tbody
       tr(
         v-for="item in items"
