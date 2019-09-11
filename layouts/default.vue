@@ -16,7 +16,7 @@ import Toolbar from '@/components/core/Toolbar'
 import Drawer from '@/components/core/Drawer'
 import Footer from '@/components/core/Footer'
 import Login from '@/components/core/Login'
-// TODO: Pagination 어떻게 처리할지 고민해보기.
+
 export default {
   components: {
     Snackbar,
@@ -38,7 +38,7 @@ export default {
     }
   },
   mounted () {
-    this.$store.dispatch('auth/checkLogin', this.$vuetify)
+    this.$store.dispatch('auth/checkLogin')
     this.onResize()
     window.addEventListener('resize', this.onResize, { passive: true })
   },
@@ -61,3 +61,17 @@ export default {
   }
 }
 </script>
+
+<style>
+/* 와! Sans */
+.Sans, .display-4.Sans, .display-3.Sans, .display-2.Sans, .display-1.Sans,
+.headline.Sans, .title.Sans, .subtitle-1.Sans, .subtitle-2.Sans,
+.body-1.Sans, .body-2.Sans, .caption.Sans, .overline.Sans {
+  font-family: 'Noto Sans KR' !important;
+}
+.Serif, .display-4.Serif, .display-3.Serif, .display-2.Serif, .display-1.Serif,
+.headline.Serif, .title.Serif, .subtitle-1.Serif, .subtitle-2.Serif,
+.body-1.Serif, .body-2.Serif, .caption.Serif, .overline.Serif {
+  font-family: 'Noto Serif KR' !important;
+}
+</style>

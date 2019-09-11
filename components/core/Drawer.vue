@@ -6,7 +6,7 @@
     width="280px"
   )
     v-toolbar(
-      color="red lighten-3"
+      color="green darken-2"
       dark
       min-height="60px"
       max-height="80px"
@@ -71,14 +71,14 @@
         v-if="$store.state.auth.username === ''"
         class="px-2 pb-2"
       )
-        v-btn(color="red lighten-3" block @click="openDialog")
+        v-btn(color="green lighten-1" block @click="openDialog")
           v-icon(left) mdi-lock-open
           | MEMBER LOGIN
       div(
         v-if="$store.state.auth.username !== ''"
         class="px-2 pb-2"
       )
-        v-btn(color="red lighten-3" block @click="logout")
+        v-btn(color="red accent-2" block @click="logout")
           v-icon(left) mdi-logout-variant
           | LOGOUT
 </template>
@@ -101,7 +101,8 @@ export default {
       ],
       staffItems: [
         { id: 'inventory', title: '비품관리', icon: 'mdi-package-variant' },
-        { id: 'finance', title: '재무업무', icon: 'mdi-cash-100' }
+        { id: 'finance', title: '회계관리', icon: 'mdi-cash-100' },
+        { id: 'human', title: '인사관리', icon: 'mdi-account-badge-horizontal-outline' }
       ]
     }
   },
@@ -117,7 +118,7 @@ export default {
   },
   methods: {
     logout () {
-      this.$store.commit('auth/logout', this.$vuetify)
+      this.$store.commit('auth/logout')
     },
     openDialog () {
       this.$store.commit('setLoginDialogOpen', true)

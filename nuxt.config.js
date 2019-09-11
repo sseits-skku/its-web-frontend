@@ -1,8 +1,8 @@
-import colors from 'vuetify/es5/util/colors'
 import webpack from 'webpack'
 
 export default {
-  mode: 'universal',
+  // mode: 'universal',
+  mode: 'spa',
   /*
   ** Headers of the page
   */
@@ -38,6 +38,7 @@ export default {
   */
   buildModules: [
     // Doc: https://github.com/nuxt-community/eslint-module
+    'nuxt-webfontloader',
     '@nuxtjs/eslint-module',
     '@nuxtjs/vuetify'
   ],
@@ -55,6 +56,11 @@ export default {
   */
   axios: {
     baseURL: 'http://localhost:8000'
+  },
+  webfontloader: {
+    google: {
+      families: ['Noto Sans KR', 'Noto Serif KR']
+    }
   },
   markdownit: {
     preset: 'commonmark',
@@ -81,7 +87,7 @@ export default {
       font: false,
       icons: 'mdi'
     },
-    theme: {
+    theme: {/*
       themes: {
         dark: {
           primary: colors.blue.darken2,
@@ -92,7 +98,7 @@ export default {
           error: colors.deepOrange.accent4,
           success: colors.green.accent3
         }
-      }
+      } */
     }
   },
   /*
@@ -104,7 +110,7 @@ export default {
     */
     analyze: false,
     babel: {
-      'presets': [
+      presets: [
         '@babel/preset-env'
       ],
       plugins: [
@@ -114,6 +120,13 @@ export default {
     cache: true,
     cssSourceMap: false,
     extend (config, ctx) {
+      config.module.rules.push({
+        enforce : 'pre',
+        test    : /\.(js|vue)$/,
+        loader  : 'eslint-loader',
+        exclude : /(node_modules)/,
+        options : { fix : true }
+      })
     },
     parallel: true,
     plugins: [

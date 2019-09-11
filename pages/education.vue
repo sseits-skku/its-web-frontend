@@ -2,6 +2,7 @@
   v-flex
     Banner
     v-toolbar(
+      class="elevation-1"
       dense
       floating
     )

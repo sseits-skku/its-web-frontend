@@ -5,7 +5,7 @@
   )
     v-card(class="elevation-12")
       v-toolbar(
-        color="blue lighten-2"
+        color="green lighten-2"
         dark
         flat
       )
@@ -34,7 +34,7 @@
         v-spacer/
         v-btn(
           class="mb-4"
-          color="blue lighten-3"
+          color="green lighten-2"
           fab
           rounded
           :loading="isPending"
@@ -72,7 +72,6 @@ export default {
         this.$axios.setHeader('Authorization', 'Bearer ' + access)
         const info = await this.$axios.$get(`/account/user/${userId}`)
         this.$store.commit('auth/setLogin', {
-          vuetify: this.$vuetify,
           username: this.id,
           refresh,
           access,
