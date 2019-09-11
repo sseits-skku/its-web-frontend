@@ -1,5 +1,5 @@
 <template lang="pug">
-  v-container.fill-height(fluid)
+  v-container.fluid.fill-height
     v-col
       v-row.align-center.justify-center
         h1 안건게시판은 Mantis로 이동해주세요...

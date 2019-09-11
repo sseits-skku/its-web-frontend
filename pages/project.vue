@@ -1,5 +1,6 @@
 <template lang="pug">
-  Project
+  v-container.fluid
+    Project
 </template>
 
 <script>

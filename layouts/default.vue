@@ -4,8 +4,7 @@
     Toolbar/
     Drawer/
     v-content
-      v-container(fluid fill-height)
-        nuxt/
+      nuxt/
     Footer/
     Snackbar/
 </template>

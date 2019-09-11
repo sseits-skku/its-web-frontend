@@ -1,110 +1,118 @@
 <template lang="pug">
-  v-card.align-center.justify-center.mx-auto(
-    min-width="600px"
-    max-width="800px"
-  )
-    v-stepper.mx-auto(
-      v-model="step"
-      alt-labels
+  v-container.fluid.fill-height(v-if="doRecruit")
+    v-card.align-center.justify-center.mx-auto(
+      min-width="600px"
+      max-width="800px"
     )
-      v-stepper-header
-        v-stepper-step(
-          :complete="step > 1"
-          step="1"
-          editable
-        ) 지원 참고사항
-        v-divider
-        v-stepper-step(
-          :complete="step > 2"
-          step="2"
-          editable
-        ) 적성 확인
-        v-divider
-        v-stepper-step(
-          :complete="step > 3"
-          step="3"
-          editable
-        ) 지원서 작성
-        v-divider
-        v-stepper-step(
-          step="4"
-          editable
-        ) 일정 조율
-      v-stepper-items
-        v-stepper-content(step="1")
-          v-card.elevation-0.mb-4
-            v-card-title.display-1.Sans(v-html="title")
-            v-card-text.text--primary.title.Sans.pb-0 SSE-ITS에 지원함에 있어서 다음 사항을 숙지하시기 바랍니다.
-            v-card-text.text--primary.subtitle-2.Sans.py-1(v-html="intro")
-            v-card-text.text--primary.title.Serif.pt-2 위 내용에 동의하십니까?
-            v-card-actions
-              v-spacer
-              v-btn(
-                color="success"
-                @click.native="step = 2"
-              ) 네, 동의합니다.
-              v-spacer
-              v-btn(
-                color="error"
-                @click.native="goHome"
-              ) 아니오, 동의하지 않습니다.
-              v-spacer
-        v-stepper-content(step="2")
-          v-card.elevation-0.mb-4
-            v-card-title.display-1 적성 확인
-            v-card-text.text--primary.mt-2.pb-1
-            // TODO: Form 형태로 작성하게. 질문 뭐할지 정하기.
-            v-card-actions
-              v-spacer
-              v-btn.success(@click.native="step = 3") 다음
-              v-spacer
-              v-btn.secondary(@click.native="step = 1") 이전
-              v-spacer
-        v-stepper-content(step="3")
-          v-card.elevation-0.mb-4
-            v-card-title.display-1 지원서 작성
-            v-card-text.text--primary.mt-2.pb-1
-              v-textarea(
-                v-if="!showPreview"
-                id="inputTextField"
-                v-model="textContent"
-                counter
-                single-line
-                full-width
-                auto-grow
-              )
-              div.text--primary(
-                v-if="!!(showPreview)"
-                v-html="shownContent"
-              )
-            v-card-actions
-              v-spacer
-              v-btn.success(@click.native="step = 4") 다음
-              v-spacer
-              v-btn.warning(@click.native="showPreview = !showPreview") Preview
-              v-spacer
-              v-btn.secondary(@click.native="step = 2") 이전
-              v-spacer
-        v-stepper-content(step="4")
-          v-card.elevation-0.mb-4
-            v-card-title.display-1 일정 조율
-            v-card-text.text--primary.subtitle-2.mt-2.pb-1 일정 조율
-            v-card-text.text--primary.title.pt-1 위 내용에 동의하십니까?
-            v-card-actions
-              v-spacer
-              v-btn.primary(
-                :loading="submitLoading"
-                @click.native="submit"
-              ) 제출
-              v-spacer
-              v-btn.secondary(@click.native="step = 3") 이전
-              v-spacer
+      v-stepper.mx-auto(
+        v-model="step"
+        alt-labels
+      )
+        v-stepper-header
+          v-stepper-step(
+            :complete="step > 1"
+            step="1"
+            editable
+          ) 지원 참고사항
+          v-divider
+          v-stepper-step(
+            :complete="step > 2"
+            step="2"
+            editable
+          ) 적성 확인
+          v-divider
+          v-stepper-step(
+            :complete="step > 3"
+            step="3"
+            editable
+          ) 지원서 작성
+          v-divider
+          v-stepper-step(
+            step="4"
+            editable
+          ) 일정 조율
+        v-stepper-items
+          v-stepper-content(step="1")
+            v-card.elevation-0.mb-4
+              v-card-title.display-1.Sans(v-html="title")
+              v-card-text.text--primary.title.Sans.pb-0 SSE-ITS에 지원함에 있어서 다음 사항을 숙지하시기 바랍니다.
+              v-card-text.text--primary.subtitle-2.Sans.py-1(v-html="intro")
+              v-card-text.text--primary.title.Serif.pt-2 위 내용에 동의하십니까?
+              v-card-actions
+                v-spacer
+                v-btn(
+                  color="success"
+                  @click.native="step = 2"
+                ) 네, 동의합니다.
+                v-spacer
+                v-btn(
+                  color="error"
+                  @click.native="goHome"
+                ) 아니오, 동의하지 않습니다.
+                v-spacer
+          v-stepper-content(step="2")
+            v-card.elevation-0.mb-4
+              v-card-title.display-1 적성 확인
+              v-card-text.text--primary.mt-2.pb-1
+              // TODO: Form 형태로 작성하게. 질문 뭐할지 정하기.
+              v-card-actions
+                v-spacer
+                v-btn.success(@click.native="step = 3") 다음
+                v-spacer
+                v-btn.secondary(@click.native="step = 1") 이전
+                v-spacer
+          v-stepper-content(step="3")
+            v-card.elevation-0.mb-4
+              v-card-title.display-1 지원서 작성
+              v-card-text.text--primary.mt-2.pb-1
+                v-textarea(
+                  v-if="!showPreview"
+                  id="inputTextField"
+                  v-model="textContent"
+                  counter
+                  single-line
+                  full-width
+                  auto-grow
+                )
+                div.text--primary(
+                  v-if="!!(showPreview)"
+                  v-html="shownContent"
+                )
+              v-card-actions
+                v-spacer
+                v-btn.success(@click.native="step = 4") 다음
+                v-spacer
+                v-btn.warning(@click.native="showPreview = !showPreview") Preview
+                v-spacer
+                v-btn.secondary(@click.native="step = 2") 이전
+                v-spacer
+          v-stepper-content(step="4")
+            v-card.elevation-0.mb-4
+              v-card-title.display-1 일정 조율
+              v-card-text.text--primary.subtitle-2.mt-2.pb-1 일정 조율
+              v-card-text.text--primary.title.pt-1 위 내용에 동의하십니까?
+              v-card-actions
+                v-spacer
+                v-btn.primary(
+                  :loading="submitLoading"
+                  @click.native="submit"
+                ) 제출
+                v-spacer
+                v-btn.secondary(@click.native="step = 3") 이전
+                v-spacer
+  v-container.fluid.fill-height(v-else)
+    v-col
+      v-row.align-center.justify-center
+        h1 지금은 SSE-ITS 지원기간이 아닙니다. 지원기간에 지원해 주세요.
+      v-row.align-center.justify-center.pt-5
+        v-btn.primary(@click.native="$router.push('/')") 메인으로
 </template>
 
 <script>
 export default {
   data () {
     return {
+      doRecruit: false,
       showPreview: false,
       submitLoading: false,
       textContent: '지원서는 양식이 없습니다.\nMarkdown 양식을 지원하며, 아래 PREVIEW 버튼을 통해 미리볼 수 있습니다.\n자유롭게 작성해 주세요.',
