@@ -2,9 +2,7 @@
   div
     Banner
     v-container
-      v-row(
-        class="align-center justify-center"
-      )
+      v-row.align-center.justify-center
         ProjectItem(
           v-for="(item, i) in dummy"
           :key="i"

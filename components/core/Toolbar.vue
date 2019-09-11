@@ -4,7 +4,7 @@
     app
     dense
   )
-    v-app-bar-nav-icon(@click="dOpen = true")
+    v-app-bar-nav-icon(@click.native="dOpen = true")
     v-spacer/
 </template>
 

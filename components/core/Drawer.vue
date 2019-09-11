@@ -5,21 +5,18 @@
     :permanent="dPerm"
     width="280px"
   )
-    v-toolbar(
-      color="green darken-2"
+    v-toolbar.green.darken-2(
       dark
       min-height="60px"
       max-height="80px"
     )
       v-spacer/
-      v-btn(
-        class="elevation-0"
-        color="transparent"
+      v-btn.elevation-0.transparent(
         :ripple="false"
-        large
+        block
         @click.native="goPage('/')"
       )
-        div(class="display-1") SSE-ITS
+        div.display-1 SSE-ITS
       v-spacer/
     v-list(
       flat
@@ -42,7 +39,7 @@
           v-if="$store.state.auth.username !== '' | true"
         )
           v-divider()
-          v-subheader(inset class="text-center subtitle-1") Member Zone
+          v-subheader.text-center.subtitle-1(inset) Member Zone
           v-list-item(
             v-for="item in memberItems"
             :key="item.title"
@@ -56,7 +53,7 @@
           v-if="$store.state.auth.isStaff | true"
         )
           v-divider()
-          v-subheader(inset class="text-center subtitle-1") Staff Zone
+          v-subheader.text-center.subtitle-1(inset) Staff Zone
           v-list-item(
             v-for="item in staffItems"
             :key="item.title"
@@ -67,18 +64,12 @@
             v-list-item-content
               v-list-item-title(v-text="item.title")
     template(v-slot:append)
-      div(
-        v-if="$store.state.auth.username === ''"
-        class="px-2 pb-2"
-      )
-        v-btn(color="green lighten-1" block @click="openDialog")
+      div.px-2.pb-2(v-if="$store.state.auth.username === ''")
+        v-btn.green.lighten-1(block @click.native="openDialog")
           v-icon(left) mdi-lock-open
           | MEMBER LOGIN
-      div(
-        v-if="$store.state.auth.username !== ''"
-        class="px-2 pb-2"
-      )
-        v-btn(color="red accent-2" block @click="logout")
+      div.px-2.pb-2(v-if="$store.state.auth.username !== ''")
+        v-btn.red.accent-2(block @click.native="logout")
           v-icon(left) mdi-logout-variant
           | LOGOUT
 </template>
@@ -124,7 +115,7 @@ export default {
       this.$store.commit('setLoginDialogOpen', true)
     },
     goPage (id) {
-      this.$router.push(id)
+      this.$router.push(`/${id}`)
     }
   }
 }

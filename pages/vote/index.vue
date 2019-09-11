@@ -1,6 +1,7 @@
 <template lang="pug">
   // Make your main page...
-  v-img(src="/img/main.png")
+  v-container.fluid.fill-height
+    v-img(src="/img/main.png")
 </template>
 
 <script>

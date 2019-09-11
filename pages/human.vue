@@ -1,6 +1,7 @@
 <!-- 엄마도 흒댄이야 흒댄! 이번엔 You를 Believe했단 말야! -->
 <template lang="pug">
-  Human
+  v-container.fluid.fill-height
+    Human
 </template>
 
 <script>

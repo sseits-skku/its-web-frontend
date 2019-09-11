@@ -1,23 +1,18 @@
 <template lang="pug">
-  v-simple-table(
-    class="ma-0"
-  )
+  v-simple-table.ma-0
     thead
       tr
-        th(class="blue-grey lighten-4 text-center") Date
-        th(class="blue-grey lighten-4 text-center") Topic
-        th(class="blue-grey lighten-4 text-center") File
-        th(class="blue-grey lighten-4 text-center") Speaker
+        th.blue-grey.lighten-4.text-center Date
+        th.blue-grey.lighten-4.text-center Topic
+        th.blue-grey.lighten-4.text-center File
+        th.blue-grey.lighten-4.text-center Speaker
     tbody
-      tr(
-        v-for="item in items"
-        :key="item.t"
-      )
-        td(class="text-center") {{ item.d }}
-        td(class="text-center") {{ item.t }}
-        td(class="text-center")
-          v-icon(:href="item.f") mdi-file-download-outline
-        td(class="text-center") {{ item.s }}
+      tr(v-for="(item, i) in items" :key="i")
+        td.text-center {{ item.d }}
+        td.text-center {{ item.t }}
+        td.text-center
+          v-icon(v-if="item.f" :href="item.f") mdi-file-download-outline
+        td.text-center {{ item.s }}
 </template>
 
 <script>
@@ -31,16 +26,9 @@ export default {
   data () {
     return {
       items: [
-        { d: new Date(), t: 'hello??', f: 'https://localhost:8000/api/help', s: '1' },
-        { d: new Date(), t: 'hello??', f: 'https://localhost:8000/api/help', s: '1' },
-        { d: new Date(), t: 'hello??', f: 'https://localhost:8000/api/help', s: '1' },
-        { d: new Date(), t: 'hello??', f: 'https://localhost:8000/api/help', s: '1' },
-        { d: new Date(), t: 'hello??', f: 'https://localhost:8000/api/help', s: '1' },
-        { d: new Date(), t: 'hello??', f: 'https://localhost:8000/api/help', s: '1' },
-        { d: new Date(), t: 'hello??', f: 'https://localhost:8000/api/help', s: '1' },
-        { d: new Date(), t: 'hello??', f: 'https://localhost:8000/api/help', s: '1' },
-        { d: new Date(), t: 'hello??', f: 'https://localhost:8000/api/help', s: '1' },
-        { d: new Date(), t: 'hello??', f: 'https://localhost:8000/api/help', s: '1' }
+        { d: '', t: '교육자료 목록을 가져오는데 실패하였습니다.', f: '', s: '' },
+        { d: '', t: '새로고침을 하여 다시 가져오시기 바랍니다.', f: '', s: '' },
+        { d: '', t: '새로고침을 하여도 실패할 경우, 관리자에게 연락 바랍니다.', f: '', s: '' }
       ]
     }
   }/*,

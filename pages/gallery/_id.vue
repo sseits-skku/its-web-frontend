@@ -1,8 +1,16 @@
 <template lang="pug">
-  // Make your main page...
-  v-img(src="/img/main.png")
+  GalleryDetail(:batchId="bId")
 </template>
 
 <script>
-export default {}
+import GalleryDetail from '@/components/gallery/GalleryDetail'
+export default {
+  validate ({ params }) { return /^\d+$/.test(params.id) },
+  components: {
+    GalleryDetail
+  },
+  computed: {
+    bId () { return this.$route.params.id }
+  }
+}
 </script>

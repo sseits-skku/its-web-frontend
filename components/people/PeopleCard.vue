@@ -1,8 +1,7 @@
 <template lang="pug">
-  v-card(
+  v-card.ma-2(
     max-width="280px"
     max-height="200px"
-    class="ma-2"
   )
     v-card-title.align-center.justify-center.pb-0 {{ fullname }}
     v-card-text.text-center.py-2 {{ position }}
