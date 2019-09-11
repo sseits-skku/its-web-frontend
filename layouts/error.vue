@@ -1,21 +1,12 @@
 <template lang="pug">
-  v-container(
-    class="fill-height"
-    fluid
-  )
+  v-container.fill-height(fluid)
     v-col
-      v-row(
-        align="center"
-        justify="center"
-      )
+      v-row.align-center.justify-center
         h1(v-if="error.statusCode === 404")
           | {{ pageNotFound.detail }}
         h1(v-else)
           | {{ otherError.detail }}
-      v-row(
-        align="center"
-        justify="center"
-      )
+      v-row.align-center.justify-center
         NuxtLink(to="/")
           h2 메인 화면으로
 </template>

@@ -1,12 +1,10 @@
 <template lang="pug">
-  v-card(
+  v-card.align-center.justify-center.mx-auto(
     min-width="600px"
     max-width="800px"
-    class="align-center justify-center mx-auto"
   )
-    v-stepper(
+    v-stepper.mx-auto(
       v-model="step"
-      class="mx-auto"
       alt-labels
     )
       v-stepper-header
@@ -34,9 +32,7 @@
         ) 일정 조율
       v-stepper-items
         v-stepper-content(step="1")
-          v-card.mb-4(
-            class="elevation-0"
-          )
+          v-card.elevation-0.mb-4
             v-card-title.display-1.Sans(v-html="title")
             v-card-text.text--primary.title.Sans.pb-0 SSE-ITS에 지원함에 있어서 다음 사항을 숙지하시기 바랍니다.
             v-card-text.text--primary.subtitle-2.Sans.py-1(v-html="intro")
@@ -54,38 +50,20 @@
               ) 아니오, 동의하지 않습니다.
               v-spacer
         v-stepper-content(step="2")
-          v-card.mb-4(
-            class="elevation-0"
-          )
-            v-card-title(
-              class="display-1"
-            ) 적성 확인
-            v-card-text(
-              class="text--primary mt-2 pb-1"
-            )
+          v-card.elevation-0.mb-4
+            v-card-title.display-1 적성 확인
+            v-card-text.text--primary.mt-2.pb-1
             // TODO: Form 형태로 작성하게. 질문 뭐할지 정하기.
             v-card-actions
               v-spacer
-              v-btn(
-                color="success"
-                @click.native="step = 3"
-              ) 다음
+              v-btn.success(@click.native="step = 3") 다음
               v-spacer
-              v-btn(
-                color="secondary"
-                @click.native="step = 1"
-              ) 이전
+              v-btn.secondary(@click.native="step = 1") 이전
               v-spacer
         v-stepper-content(step="3")
-          v-card.mb-4(
-            class="elevation-0"
-          )
-            v-card-title(
-              class="display-1"
-            ) 지원서 작성
-            v-card-text(
-              class="text--primary mt-2 pb-1"
-            )
+          v-card.elevation-0.mb-4
+            v-card-title.display-1 지원서 작성
+            v-card-text.text--primary.mt-2.pb-1
               v-textarea(
                 v-if="!showPreview"
                 id="inputTextField"
@@ -95,53 +73,31 @@
                 full-width
                 auto-grow
               )
-              div(
+              div.text--primary(
                 v-if="!!(showPreview)"
-                class="text--primary"
                 v-html="shownContent"
               )
             v-card-actions
               v-spacer
-              v-btn(
-                color="success"
-                @click.native="step = 4"
-              ) 다음
+              v-btn.success(@click.native="step = 4") 다음
               v-spacer
-              v-btn(
-                color="warning"
-                @click.native="showPreview = !showPreview"
-              ) Preview
+              v-btn.warning(@click.native="showPreview = !showPreview") Preview
               v-spacer
-              v-btn(
-                color="secondary"
-                @click.native="step = 2"
-              ) 이전
+              v-btn.secondary(@click.native="step = 2") 이전
               v-spacer
         v-stepper-content(step="4")
-          v-card.mb-4(
-            class="elevation-0"
-          )
-            v-card-title(
-              class="display-1"
-            ) 일정 조율
-            v-card-text(
-              class="text--primary subtitle-2 mt-2 pb-1"
-            ) 일정 조율
-            v-card-text(
-              class="text--primary title pt-1"
-            ) 위 내용에 동의하십니까?
+          v-card.elevation-0.mb-4
+            v-card-title.display-1 일정 조율
+            v-card-text.text--primary.subtitle-2.mt-2.pb-1 일정 조율
+            v-card-text.text--primary.title.pt-1 위 내용에 동의하십니까?
             v-card-actions
               v-spacer
-              v-btn(
-                color="primary"
+              v-btn.primary(
                 :loading="submitLoading"
                 @click.native="submit"
               ) 제출
               v-spacer
-              v-btn(
-                color="secondary"
-                @click.native="step = 3"
-              ) 이전
+              v-btn.secondary(@click.native="step = 3") 이전
               v-spacer
 </template>
 

@@ -1,23 +1,21 @@
 <template lang="pug">
-  v-simple-table(
-    class="ma-0"
-  )
+  v-simple-table.ma-0
     thead
       tr
-        th(class="blue-grey lighten-4 text-center") Date
-        th(class="blue-grey lighten-4 text-center") Topic
-        th(class="blue-grey lighten-4 text-center") File
-        th(class="blue-grey lighten-4 text-center") Speaker
+        th.blue-grey.lighten-4.text-center Date
+        th.blue-grey.lighten-4.text-center Topic
+        th.blue-grey.lighten-4.text-center File
+        th.blue-grey.lighten-4.text-center Speaker
     tbody
       tr(
         v-for="item in items"
         :key="item.t"
       )
-        td(class="text-center") {{ item.d }}
-        td(class="text-center") {{ item.t }}
-        td(class="text-center")
+        td.text-center {{ item.d }}
+        td.text-center {{ item.t }}
+        td.text-center
           v-icon(:href="item.f") mdi-file-download-outline
-        td(class="text-center") {{ item.s }}
+        td.text-center {{ item.s }}
 </template>
 
 <script>

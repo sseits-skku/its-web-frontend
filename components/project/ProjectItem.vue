@@ -1,22 +1,19 @@
 <template lang="pug">
-  v-card(
+  v-card.ma-2(
     max-width="280px"
     max-height="400px"
-    class="ma-2"
   )
     v-img(
       max-width="280px"
       height="180px"
       :src="typeof image !== undefined ? image : defaultImage"
     )
-      v-card-title(
-        class="align-end justify-end fill-width fill-height"
-      ) {{ title }}
-    v-card-text(class="pa-2")
+      v-card-title.align-end.justify-end.fill-width.fill-height {{ title }}
+    v-card-text.pa-2
       span 기여자: {{ author }}
       br
-      span(class="text--primary") {{ text }}
-    v-card-actions(class="pt-0")
+      span.text--primary {{ text }}
+    v-card-actions.pt-0
       v-spacer
       v-btn(
         v-show="typeof golink !== 'undefined'"

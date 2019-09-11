@@ -1,18 +1,9 @@
 <template lang="pug">
-  v-container(
-    class="fill-height"
-    fluid
-  )
+  v-container.fill-height(fluid)
     v-col
-      v-row(
-        align="center"
-        justify="center"
-      )
+      v-row.align-center.justify-center
         h1 안건게시판은 Mantis로 이동해주세요...
-      v-row(
-        align="center"
-        justify="center"
-      )
+      v-row.align-center.justify-center.pt-5
         v-btn(color="primary") Mantis로 가기
 </template>
 

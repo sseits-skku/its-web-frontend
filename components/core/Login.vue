@@ -3,15 +3,11 @@
     v-model="diaOpen"
     width="480px"
   )
-    v-card(class="elevation-12")
-      v-toolbar(
-        color="green lighten-2"
-        dark
-        flat
-      )
+    v-card.elevation-12
+      v-toolbar.green.lighten-2(dark flat)
         v-toolbar-title Member Login
         v-spacer/
-        v-btn(color="red" rounded @click="diaOpen = false")
+        v-btn.red(rounded @click.native="diaOpen = false")
           v-icon mdi-close
       v-card-text
         v-text-field(
@@ -32,13 +28,11 @@
         )
       v-card-actions
         v-spacer/
-        v-btn(
-          class="mb-4"
-          color="green lighten-2"
+        v-btn.green.lighten-2.mb-4(
           fab
           rounded
           :loading="isPending"
-          @click="postLogin"
+          @click.native="postLogin"
           @keyup.enter.native="postLogin"
         )
           v-icon mdi-send

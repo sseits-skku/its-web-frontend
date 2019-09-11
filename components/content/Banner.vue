@@ -1,16 +1,11 @@
 <template lang="pug">
-  v-img(
+  v-img.fill-width(
     :src="img"
-    class="fill-width"
     min-height="150px"
     max-height="240px"
   )
-    v-card-title(
-      class="align-center justify-center fill-width fill-height"
-    ) {{ title }}
-    v-card-text(
-      class="align-center justify-center fill-width fill-height"
-    ) {{ text }}
+    v-card-title.align-center.justify-center.fill-width.fill-height {{ title }}
+    v-card-text.align-center.justify-center.fill-width.fill-height {{ text }}
 </template>
 
 <script>

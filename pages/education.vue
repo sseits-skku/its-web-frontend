@@ -1,11 +1,7 @@
 <template lang="pug">
   v-flex
     Banner
-    v-toolbar(
-      class="elevation-1"
-      dense
-      floating
-    )
+    v-toolbar.elevation-1(dense floating)
       v-tabs
         v-tab(@click.native="cat='help'") help
         v-tab(@click.native="cat='self'") self
