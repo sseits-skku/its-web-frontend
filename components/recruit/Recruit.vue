@@ -37,14 +37,10 @@
           v-card.mb-4(
             class="elevation-0"
           )
-            v-card-title(
-              v-html="title"
-              class="display-1"
-            )
-            v-card-text(
-              v-html="intro"
-              class="text--primary subtitle-2 mt-2 pb-1"
-            )
+            v-card-title.display-1.Sans(v-html="title")
+            v-card-text.text--primary.title.Sans.pb-0 SSE-ITS에 지원함에 있어서 다음 사항을 숙지하시기 바랍니다.
+            v-card-text.text--primary.subtitle-2.Sans.py-1(v-html="intro")
+            v-card-text.text--primary.title.Serif.pt-2 위 내용에 동의하십니까?
             v-card-actions
               v-spacer
               v-btn(
@@ -158,20 +154,25 @@ export default {
       textContent: '지원서는 양식이 없습니다.\nMarkdown 양식을 지원하며, 아래 PREVIEW 버튼을 통해 미리볼 수 있습니다.\n자유롭게 작성해 주세요.',
       step: 1,
       title: 'SSE-ITS에 지원해 주셔서 감사합니다.',
-      intro: 'SSE-ITS에 지원함에 있어서 다음과 같은 사항을 인지하여 불이익을 받는 일이 없도록 합시다.<br>' +
-      '<ol><li>SSE-ITS은 반도체시스템공학과 일원을 위해 서비스 제공을 목적으로 하는 <b>학생단체</b>입니다.<br>' +
+      intro: '<ol><li>SSE-ITS은 반도체시스템공학과 구성원을 위해 서비스 제공을 목적으로 하는 <b>학생단체</b>입니다.<br>' +
       '따라서, <i>같은 학생단체인 학생회 및 알리미에 동시 지원을 할 수 없는 점</i>을 양해바라며,<br>' +
       '지키지 않을 경우 합격에 불이익이 있을 수도 있습니다.</li>' +
       '<li>SSE-ITS에서는 다음과 같은 개인정보를 신입생 모집을 위해 수집합니다.<br>' +
       '<ul><li>성명</li><li>학번</li><li>전화번호</li></ul>' +
       '개인정보는 모집이 끝난 뒤 모두 폐기될 예정이며, SSE-ITS에 지원함으로서 개인정보를<br>' +
-      '다음과 같이 취급함에 동의하신 것으로 간주됩니다.</li>' +
-      '<li>SSE-ITS의 일원이 되면, 다음과 같은 사항들에 접근 권한이 부여됩니다.' +
-      '<ul><li>학과 서버 관리</li><li>학과 서비스 관리</li><li>시스템실 출입</li><li>반도체관 출입시스템 관리</li></ul>' +
+      '이와 같이 취급함에 동의하신 것으로 간주됩니다.</li>' +
+      '<li>SSE-ITS의 구성원이 되면, 다음 사항들을 대여받습니다.' +
+      '<ul><li>시스템실 개인 좌석</li><li>시스템실 개인 컴퓨터</li><li>시스템실 출입</li><li>반도체관 출입시스템 관리 권한</li></ul>' +
+      'SSE-ITS의 구성원 세부 직책에 따라 다음 권한도 부여 받을 수 있습니다.' +
+      '<ul><li>학과 서버 관리 권한</li><li>학과 서비스 관리 권한</li></ul>' +
       '</li>' +
-      '<li>SSE-ITS의 일원이 되면, 특별한 예외가 없는 한 매 학기 Office-Hour가 의무적으로 부여됩니다.' +
+      '<li>SSE-ITS의 구성원이 되면, 특별한 예외나 사전조율이 없는 경우 다음 사항 의무적으로 수행하여야 합니다.<br>' +
+      '<ul><li>매 학기 지정된 Office-Hour 업무</li>' +
+      '<li>주 1회 이상의 정기회의 참석</li>' +
+      '*<i>Office-Hour는 시스템실에 일정 시각동안 시스템실 상시 대기 업무를 일컫습니다.</i><br>' +
+      '*<i>시험 2주 전에는 시행하지 않음</i></ul>' +
       '</li>' +
-      '<li>SSE-ITS의 일원이 되면, 특별한 예외가 없는 주 1회 이상의 회의를 2시간 이상 참여해야 합니다. ' +
+      '<li>SSE-ITS의 구성원이 되면, 특별한 예외가 없는 주 1회 이상의 회의를 2시간 이상 참여해야 합니다. ' +
       '</li>' +
       '</ol>'
     }
