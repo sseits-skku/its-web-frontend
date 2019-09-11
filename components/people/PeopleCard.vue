@@ -4,41 +4,37 @@
     max-height="200px"
     class="ma-2"
   )
-    v-card-title(
-      class="align-end justify-end fill-width fill-height"
-    ) {{ fullname }}
-    v-card-text(class="pa-2")
-      span {{ position }}
-      br
-      span(class="text--primary") 닉네임: {{ nickname }}
-    v-card-actions(
-      class="pt-0"
-    )
+    v-card-title.align-center.justify-center.pb-0 {{ fullname }}
+    v-card-text.text-center.py-2 {{ position }}
+    v-card-text.text--primary.py-0(v-if="nickname !== ''") 닉네임: {{ nickname }}
+    v-card-actions.pt-0(v-if="golink || github")
       v-spacer
       v-btn(
-        v-show="typeof golink !== 'undefined'"
+        v-if="typeof golink !== 'undefined'"
         text
         icon
         :href="golink"
       )
         v-icon mdi-home
+      v-spacer
       v-btn(
-        v-show="typeof github !== 'undefined'"
+        v-if="typeof github !== 'undefined'"
         text
         icon
         :href="github"
       )
         v-icon mdi-github-face
+      v-spacer
 </template>
 
 <script>
 export default {
   props: {
-    fullname: { type: String, default: '김아무개' },
-    nickname: { type: String, default: 'kill-20000' },
+    fullname: { type: String, default: undefined },
+    nickname: { type: String, default: undefined },
     position: { type: String, default: 'Developer' },
-    golink: { type: String, default: 'https://www.naver.com' },
-    github: { type: String, default: 'https://www.github.com/sseits-skku' }
+    golink: { type: String, default: undefined },
+    github: { type: String, default: undefined }
   },
   data () {
     return {
