@@ -5,17 +5,15 @@
     :permanent="dPerm"
     width="280px"
   )
-    v-toolbar(
-      color="green darken-2"
+    v-toolbar.green.darken-2(
       dark
       min-height="60px"
       max-height="80px"
     )
       v-spacer/
-      v-btn.elevation-0(
-        color="transparent"
+      v-btn.elevation-0.transparent(
         :ripple="false"
-        large
+        block
         @click.native="goPage('/')"
       )
         div.display-1 SSE-ITS
