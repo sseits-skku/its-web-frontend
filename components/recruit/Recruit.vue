@@ -236,9 +236,7 @@ export default {
       // TODO: submit recruit action
       this.goHome()
     },
-    goHome () {
-      this.$router.push('/')
-    }
+    goHome () { this.$router.push('/') }
   }
 }
 </script>
