@@ -5,7 +5,7 @@
   )
     v-card(class="elevation-12")
       v-toolbar(
-        color="blue lighten-2"
+        color="green lighten-2"
         dark
         flat
       )
@@ -34,7 +34,7 @@
         v-spacer/
         v-btn(
           class="mb-4"
-          color="blue lighten-3"
+          color="green lighten-2"
           fab
           rounded
           :loading="isPending"
