@@ -14,7 +14,7 @@
       v-btn.elevation-0.transparent(
         :ripple="false"
         block
-        @click.native="goPage('/')"
+        @click.native="goPage()"
       )
         div.display-1 SSE-ITS
       v-spacer/
@@ -115,7 +115,9 @@ export default {
       this.$store.commit('setLoginDialogOpen', true)
     },
     goPage (id) {
-      this.$router.push(`/${id}`)
+      typeof id === 'undefined'
+        ? this.$router.push('/')
+        : this.$router.push(`/${id}`)
     }
   }
 }
