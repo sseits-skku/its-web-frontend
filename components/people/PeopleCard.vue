@@ -1,5 +1,5 @@
 <template lang="pug">
-  v-card.ma-2(
+  v-card.my-2.mx-auto(
     max-width="280px"
     max-height="200px"
   )
