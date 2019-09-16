@@ -30,11 +30,11 @@ export const mutations = {
 }
 
 export const actions = {
-  async checkLogin (context) {
+  async checkLogin (context, router) {
     try {
       const cAuth = Cookie.get('Authorization')
       if (typeof cAuth === 'undefined') {
-        throw new TypeError('not logged in.')
+        throw new TypeError('로그인 해 주세요.')
       }
       const auth = JSON.parse(cAuth)
       const resAccess = await this.$axios.$post('/auth/verify', {
@@ -58,12 +58,14 @@ export const actions = {
         }
         context.commit('setLogin', auth)
       } else {
-        throw new TypeError('token expired.')
+        throw new TypeError('토큰이 만료되었습니다. 다시 로그인 해 주세요.')
       }
     } catch (err) {
       // invalid cookie and logout.
       console.log(err)
       context.commit('logout')
+      context.commit('snackbar/setSnack', err, 'error')
+      router.push('/')
     }
   }
 }

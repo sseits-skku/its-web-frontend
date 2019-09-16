@@ -7,8 +7,11 @@
       v-col(cols="12")
         v-toolbar.elevation-1(dense floating)
           v-tabs
-            v-tab(@click.native="cat='help'") help
-            v-tab(@click.native="cat='self'") self
+            v-tab(
+              v-for="item in categories"
+              :key="item.id"
+              @click.native="cat=item.id"
+            ) {{ item.title }}
           v-text-field(
             hide-details
             prepend-icon="mdi-magnify"
@@ -17,6 +20,9 @@
     v-row
       v-col(cols="12")
         Education(:category="cat")
+    v-row
+      v-col(cols="12")
+        v-card-title.justify-center.Sans * 혹시 다운로드 에러가 나면 페이지를 새로고침 하시면 됩니다 *
 </template>
 
 <script>
@@ -29,7 +35,14 @@ export default {
   },
   data () {
     return {
-      cat: 'help'
+      categories: [{ title: '미분류' }],
+      cat: 0
+    }
+  },
+  async created () {
+    const ret = this.$axios.$get('/edu/category', {})
+    if (typeof ret !== 'undefined') {
+      this.categories = this.categories.concat((await ret).results)
     }
   }
 }

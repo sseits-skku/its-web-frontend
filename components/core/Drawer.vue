@@ -124,7 +124,4 @@ export default {
 </script>
 
 <style scoped>
-.v-simple-table .thead {
-  background-color: black;
-}
 </style>

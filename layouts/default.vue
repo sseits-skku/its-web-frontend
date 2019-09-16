@@ -37,7 +37,7 @@ export default {
     }
   },
   mounted () {
-    this.$store.dispatch('auth/checkLogin')
+    this.$store.dispatch('auth/checkLogin', this.$router)
     this.onResize()
     window.addEventListener('resize', this.onResize, { passive: true })
   },

@@ -3,30 +3,34 @@
     v-model="show"
     :timeout="5000"
     :top="true"
-    :success="$store.state.snackbar.type === 'success'"
-    :info="$store.state.snackbar.type === 'info'"
-    :warning="$store.state.snackbar.type === 'warning'"
-    :error="$store.state.snackbar.type === 'error'"
+    :success="type === 'success'"
+    :info="type === 'info'"
+    :warning="type === 'warning'"
+    :error="type === 'error'"
   )
-    | {{ $store.state.snackbar.snack }}
-    v-btn(@click.native="show = false") Close
+    | {{ snack }}
+    v-spacer
+    v-btn(text @click.native="show = false") 닫기
 </template>
 
 <script>
 export default {
   data () {
-    return {
-      show: false
-    }
+    return {}
   },
-  created () {
-    this.$store.watch(state => state.snackbar.snack, () => {
-      const msg = this.$store.state.snackbar.snack
-      if (msg !== '') {
-        this.show = true
-        this.$store.commit('snackbar/setSnack', '', '')
-      }
-    })
+  computed: {
+    snack: {
+      get () { return this.$store.state.snackbar.snack },
+      set (value) { this.$store.commit('snackbar/SET_SNACK', value) }
+    },
+    type: {
+      get () { return this.$store.state.snackbar.type },
+      set (value) { this.$store.commit('snackbar/SET_TYPE', value) }
+    },
+    show: {
+      get () { return this.$store.state.snackbar.show },
+      set (value) { this.$store.commit('snackbar/SET_SHOW', value) }
+    }
   }
 }
 </script>

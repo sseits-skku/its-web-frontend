@@ -46,7 +46,24 @@
                 v-spacer
           v-stepper-content(step="2")
             v-card.elevation-0.mb-4
+              v-card-title.display-1.Sans 인적 사항
+              v-card-text.Sans
+                v-text-field(
+                  v-model="fullname"
+                  label="이름"
+                )
+                v-text-field(
+                  v-model="skkuId"
+                  label="학번"
+                  :rules="[rules.skku_id]"
+                )
+                v-text-field(
+                  v-model="phoneNum"
+                  label="전화번호 ('-' 없이 작성)"
+                  :rules="[rules.phone_num]"
+                )
               v-card-title.display-1.Sans 적성 확인
+              v-card-text.Sans (솔직하게 답변해 주세요)
               v-card-text.text--primary.mt-2.pb-1
                 v-divider
                 v-row.align-center
@@ -150,9 +167,24 @@
 export default {
   data () {
     return {
+      rules: {
+        skku_id: (value) => {
+          const pattern = /^(\d)+$/
+          if (pattern.test(value) && value.length <= 20) { return true }
+          return '잘못된 학번입니다.'
+        },
+        phone_num: (value) => {
+          const pattern = /^(\d|\+)+$/
+          if (pattern.test(value) && value.length <= 20) { return true }
+          return '잘못된 전화번호입니다.'
+        }
+      },
       doRecruit: true,
       showPreview: false,
       submitLoading: false,
+      fullname: '',
+      skkuId: '',
+      phoneNum: '',
       pSkill: {
         select: 2,
         level: [1, 2, 3, 4, 5],
