@@ -73,4 +73,8 @@ export default {
 .body-1.Serif, .body-2.Serif, .caption.Serif, .overline.Serif {
   font-family: 'Noto Serif KR' !important;
 }
+.WhiteShadow {
+  color: whitesmoke;
+  text-shadow: 0 0 5px black;
+}
 </style>

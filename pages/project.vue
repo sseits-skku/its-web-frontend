@@ -1,5 +1,5 @@
 <template lang="pug">
-  v-container.fluid
+  v-container.pa-0.fluid
     Project
 </template>
 

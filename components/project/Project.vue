@@ -1,6 +1,10 @@
 <template lang="pug">
   div
-    Banner
+    Banner(
+      img="/img/pattern.webp"
+      title="PROJECTS"
+      text="SSE-ITS가 진행한 프로젝트들을 소개합니다."
+    )
     v-container
       v-row.align-center.justify-center
         ProjectItem(

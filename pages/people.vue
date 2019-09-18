@@ -1,6 +1,5 @@
 <template lang="pug">
-  v-container.fluid
-    People
+  People
 </template>
 
 <script>

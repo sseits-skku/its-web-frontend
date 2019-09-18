@@ -1,6 +1,10 @@
 <template lang="pug">
-  v-container.fluid
-    Banner
+  v-container.pa-0.fluid
+    Banner(
+      img="/img/pattern2.webp"
+      title="PEOPLE OF SSE-ITS"
+      text="SSE-ITS를 이끄는 사람들입니다."
+    )
     div(v-for="(p, i) in people" :key="i")
       // TODO: 학번별로 이 컨테이너 띄우게 만들기.
       v-row
