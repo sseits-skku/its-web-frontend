@@ -1,15 +1,19 @@
 <template lang="pug">
   v-card.ma-2(
-    max-width="280px"
-    max-height="400px"
+    min-width="200px"
+    min-height="260px"
+    max-width="400px"
+    max-height="460px"
   )
     v-img(
-      max-width="280px"
-      height="180px"
+      min-width="200px"
+      min-height="140px"
+      max-width="400px"
+      max-height="200px"
       :src="typeof image !== undefined ? image : defaultImage"
     )
-      v-card-title.align-end.justify-end.fill-width.fill-height {{ title }}
-    v-card-text.pa-2
+      v-card-title.align-end.justify-end.fill-width.fill-height.headline.Serif {{ title }}
+    v-card-text.pa-2.subtitle-1.Sans
       span 기여자: {{ author }}
       br
       span.text--primary {{ text }}
@@ -35,11 +39,11 @@
 export default {
   props: {
     image: { type: String, default: '/img/dummy_logo.png' },
-    title: { type: String, default: 'Dummy Title' },
-    author: { type: String, default: 'Author 1, Author 2' },
-    text: { type: String, default: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud.' },
-    golink: { type: String, default: 'https://www.naver.com' },
-    github: { type: String, default: 'https://www.github.com/sseits-skku' }
+    title: { type: String, default: '' },
+    author: { type: String, default: '' },
+    text: { type: String, default: '' },
+    golink: { type: String, default: undefined },
+    github: { type: String, default: undefined }
   },
   data () {
     return {
