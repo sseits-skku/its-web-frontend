@@ -10,11 +10,15 @@
 </template>
 
 <script>
+import { WebpMachine } from 'webp-hero'
 import Snackbar from '@/components/core/Snackbar'
 import Toolbar from '@/components/core/Toolbar'
 import Drawer from '@/components/core/Drawer'
 import Footer from '@/components/core/Footer'
 import Login from '@/components/core/Login'
+
+const webpMachine = new WebpMachine()
+webpMachine.polyfillDocument()
 
 export default {
   components: {
