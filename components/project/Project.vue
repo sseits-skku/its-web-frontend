@@ -16,9 +16,11 @@
 </template>
 
 <script>
+import Banner from '@/components/content/Banner.vue'
 import ProjectItem from '@/components/project/ProjectItem'
 export default {
   components: {
+    Banner,
     ProjectItem
   },
   data () {

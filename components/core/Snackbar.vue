@@ -1,16 +1,14 @@
 <template lang="pug">
-  v-snackbar(
+  v-snackbar.text-center(
     v-model="show"
-    :timeout="5000"
+    :timeout="50000"
     :top="true"
-    :success="type === 'success'"
-    :info="type === 'info'"
-    :warning="type === 'warning'"
-    :error="type === 'error'"
+    :color="type"
   )
-    | {{ snack }}
     v-spacer
-    v-btn(text @click.native="show = false") 닫기
+    v-card-text.pa-0.subtitle-1.Sans {{ snack }}
+    v-spacer
+    v-btn.ma-0.Sans(text @click.native="show = false") 닫기
 </template>
 
 <script>
@@ -24,7 +22,10 @@ export default {
       set (value) { this.$store.commit('snackbar/SET_SNACK', value) }
     },
     type: {
-      get () { return this.$store.state.snackbar.type },
+      get () {
+        console.log(this.$store.state.snackbar.type)
+        return this.$store.state.snackbar.type
+      },
       set (value) { this.$store.commit('snackbar/SET_TYPE', value) }
     },
     show: {

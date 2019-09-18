@@ -34,7 +34,7 @@ export const actions = {
     try {
       const cAuth = Cookie.get('Authorization')
       if (typeof cAuth === 'undefined') {
-        throw new TypeError('로그인 해 주세요.')
+        throw new TypeError('멤버만 볼 수 있는 컨텐츠입니다.')
       }
       const auth = JSON.parse(cAuth)
       const resAccess = await this.$axios.$post('/auth/verify', {
@@ -62,9 +62,12 @@ export const actions = {
       }
     } catch (err) {
       // invalid cookie and logout.
-      console.log(err)
+      console.table(err)
       context.commit('logout')
-      context.commit('snackbar/setSnack', err, 'error')
+      context.dispatch('snackbar/setAlert', {
+        snack: err.message,
+        type: 'error'
+      }, { root: true })
       router.push('/')
     }
   }

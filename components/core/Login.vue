@@ -9,7 +9,7 @@
         v-spacer/
         v-btn.red(rounded @click.native="diaOpen = false")
           v-icon mdi-close
-      v-card-text
+      v-card-text.mt-4
         v-text-field(
           v-model="id"
           label="Login"
