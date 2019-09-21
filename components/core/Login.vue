@@ -57,6 +57,11 @@ export default {
   methods: {
     async postLogin () {
       this.isPending = true
+      await this.$store.dispatch('axios/doLogin', {
+        username: this.id,
+        password: this.pw
+      })
+      this.isPending = false
       try {
         const { access, refresh } = await this.$axios.$post('/auth/', {
           username: this.id,

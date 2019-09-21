@@ -11,9 +11,12 @@ export const mutations = {
 }
 
 export const actions = {
-  setAlert ({ state, commit }, value) {
-    commit('SET_SNACK', value.snack)
-    commit('SET_TYPE', value.type)
-    commit('SET_SHOW', true)
+  setAlert ({ commit }, value) {
+    return new Promise(() => {
+      commit('SET_SNACK', value.snack)
+      commit('SET_TYPE', value.type)
+      commit('SET_SHOW', true)
+      return true
+    })
   }
 }

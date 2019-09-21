@@ -67,6 +67,9 @@ export default {
     },
     async openRequest (i) {
       const fileId = this.items[i].file
+      // header need.
+      const plain = this.$store.dispatch('axios/plainPost', `/media/open/${fileId}`, {})
+      
       this.$axios.setHeader('Authorization', 'Bearer ' +
         this.$store.state.auth.accessToken)
       const openResult = this.$axios.$post('/media/open', {

@@ -24,7 +24,7 @@
     )
       v-list-item-group
         template(
-          v-if="$store.state.auth.username !== '' | true"
+          v-if="$store.state.axios.username !== '' | true"
         )
           v-list-item(
             v-for="item in allItems"
@@ -36,7 +36,7 @@
             v-list-item-content
               v-list-item-title(v-text="item.title")
         template(
-          v-if="$store.state.auth.username !== '' | true"
+          v-if="$store.state.axios.username !== '' | true"
         )
           v-divider()
           v-subheader.text-center.subtitle-1(inset) Member Zone
@@ -50,7 +50,7 @@
             v-list-item-content
               v-list-item-title(v-text="item.title")
         template(
-          v-if="$store.state.auth.isAdmin | true"
+          v-if="$store.state.axios.isAdmin | true"
         )
           v-divider()
           v-subheader.text-center.subtitle-1(inset) Admin Zone
@@ -64,11 +64,11 @@
             v-list-item-content
               v-list-item-title(v-text="item.title")
     template(v-slot:append)
-      div.px-2.pb-2(v-if="$store.state.auth.username === ''")
+      div.px-2.pb-2(v-if="$store.state.axios.username === ''")
         v-btn.green.lighten-1(block @click.native="openDialog")
           v-icon(left) mdi-lock-open
           | MEMBER LOGIN
-      div.px-2.pb-2(v-if="$store.state.auth.username !== ''")
+      div.px-2.pb-2(v-if="$store.state.axios.username !== ''")
         v-btn.red.accent-2(block @click.native="logout")
           v-icon(left) mdi-logout-variant
           | LOGOUT
@@ -108,15 +108,13 @@ export default {
   },
   methods: {
     logout () {
-      this.$store.commit('auth/logout')
+      this.$store.dispatch('axios/_logout')
     },
     openDialog () {
       this.$store.commit('setLoginDialogOpen', true)
     },
     goPage (id) {
-      typeof id === 'undefined'
-        ? this.$router.push('/')
-        : this.$router.push(`/${id}`)
+      this.$router.push(typeof id === 'undefined' ? '/' : `/${id}`)
     }
   }
 }

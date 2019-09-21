@@ -48,9 +48,10 @@ export default {
       })
     },
     async updateData () {
-      this.$axios.setHeader('Authorization', 'Bearer ' +
-        this.$store.state.auth.accessToken)
-      const receiveData = this.$axios.$get('/timetable/')
+      const receiveData = this.$store.dispatch('axios/authGet', {
+        path: '/timetable/',
+        kickout: true,
+      })
       console.log(await receiveData)
     }
   }
