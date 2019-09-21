@@ -1,9 +1,14 @@
 <template lang="pug">
-  // Make your main page...
-  v-container.fluid.fill-height
-    v-img(src="/img/main.png")
+  v-container.fluid
+    TimeTableList
 </template>
 
 <script>
-export default {}
+import TimeTableList from '@/components/timetable/TimeTableList'
+
+export default {
+  components: {
+    TimeTableList
+  }
+}
 </script>

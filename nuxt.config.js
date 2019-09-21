@@ -120,12 +120,15 @@ export default {
     cache: true,
     cssSourceMap: false,
     extend (config, ctx) {
+      if (ctx.isDev) {
+        config.devtool = ctx.isClient ? 'source-map' : 'inline-source-map'
+      }
       config.module.rules.push({
-        enforce : 'pre',
-        test    : /\.(js|vue)$/,
-        loader  : 'eslint-loader',
-        exclude : /(node_modules)/,
-        options : { fix : true }
+        enforce: 'pre',
+        test: /\.(js|vue)$/,
+        loader: 'eslint-loader',
+        exclude: /(node_modules)/,
+        options: { fix: true }
       })
     },
     parallel: true,
