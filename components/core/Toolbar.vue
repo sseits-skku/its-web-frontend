@@ -1,11 +1,13 @@
 <template lang="pug">
   v-app-bar(
     v-if="dPerm !== true"
+    @click.native="dOpen = true"
     app
     dense
   )
-    v-app-bar-nav-icon(@click.native="dOpen = true")
-    v-spacer/
+    v-spacer
+    v-app-bar-nav-icon
+    v-spacer
 </template>
 
 <script>

@@ -50,12 +50,12 @@
             v-list-item-content
               v-list-item-title(v-text="item.title")
         template(
-          v-if="$store.state.auth.isStaff | true"
+          v-if="$store.state.auth.isAdmin | true"
         )
           v-divider()
-          v-subheader.text-center.subtitle-1(inset) Staff Zone
+          v-subheader.text-center.subtitle-1(inset) Admin Zone
           v-list-item(
-            v-for="item in staffItems"
+            v-for="item in adminItems"
             :key="item.title"
             @click.native="goPage(item.id)"
           )
@@ -90,10 +90,9 @@ export default {
         { id: 'gallery', title: '갤러리', icon: 'mdi-image-multiple' },
         { id: 'vote', title: '투표', icon: 'mdi-vote' }
       ],
-      staffItems: [
+      adminItems: [
         { id: 'inventory', title: '비품관리', icon: 'mdi-package-variant' },
-        { id: 'finance', title: '회계관리', icon: 'mdi-cash-100' },
-        { id: 'human', title: '인사관리', icon: 'mdi-account-badge-horizontal-outline' }
+        { id: 'finance', title: '회계관리', icon: 'mdi-cash-100' }
       ]
     }
   },
