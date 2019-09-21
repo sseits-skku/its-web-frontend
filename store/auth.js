@@ -4,7 +4,7 @@ export const state = () => ({
   username: '',
   refreshToken: '',
   accessToken: '',
-  isStaff: false
+  isAdmin: false
 })
 
 export const mutations = {
@@ -12,10 +12,10 @@ export const mutations = {
     state.username = auth.username
     state.refreshToken = auth.refresh
     state.accessToken = auth.access
-    state.isStaff = auth.isStaff
+    state.isAdmin = auth.isAdmin
     Cookie.set('Authorization', {
       username: auth.username,
-      isStaff: auth.isStaff,
+      isAdmin: auth.isAdmin,
       refresh: auth.refresh,
       access: auth.access
     })
@@ -24,7 +24,7 @@ export const mutations = {
     state.username = ''
     state.refreshToken = ''
     state.accessToken = ''
-    state.isStaff = false
+    state.isAdmin = false
     Cookie.remove('Authorization')
   }
 }
