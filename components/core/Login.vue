@@ -69,7 +69,7 @@ export default {
           username: this.id,
           refresh,
           access,
-          isStaff: !!(info.is_staff | info.is_superuser)
+          isAdmin: !!(info.is_staff | info.is_superuser)
         })
         this.id = ''
         this.pw = ''
