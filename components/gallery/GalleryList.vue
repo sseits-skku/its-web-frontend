@@ -6,7 +6,7 @@
         :key="i"
         :cols="getCols"
       )
-        GalleryItem(
+        GalleryItem.mx-auto(
           :batchId="item.id"
           :title="item.title"
           :date="item.d"
@@ -29,9 +29,10 @@ export default {
   computed: {
     getCols () {
       return this.$vuetify.breakpoint.name === 'xs'
-        ? 6 : this.$vuetify.breakpoint.name === 'sm'
-          ? 4 : this.$vuetify.breakpoint.name === 'md'
-            ? 3 : 2
+        ? 12 : this.$vuetify.breakpoint.name === 'sm'
+          ? 6 : this.$vuetify.breakpoint.name === 'md'
+            ? 4 : this.$vuetify.breakpoint.name === 'lg'
+              ? 3 : 2
     }
   }
 }

@@ -4,7 +4,7 @@ export const state = () => ({
   username: '',
   refreshToken: '',
   accessToken: '',
-  isStaff: false
+  isAdmin: false
 })
 
 export const mutations = {
@@ -12,10 +12,10 @@ export const mutations = {
     state.username = auth.username
     state.refreshToken = auth.refresh
     state.accessToken = auth.access
-    state.isStaff = auth.isStaff
+    state.isAdmin = auth.isAdmin
     Cookie.set('Authorization', {
       username: auth.username,
-      isStaff: auth.isStaff,
+      isAdmin: auth.isAdmin,
       refresh: auth.refresh,
       access: auth.access
     })
@@ -24,17 +24,17 @@ export const mutations = {
     state.username = ''
     state.refreshToken = ''
     state.accessToken = ''
-    state.isStaff = false
+    state.isAdmin = false
     Cookie.remove('Authorization')
   }
 }
 
 export const actions = {
-  async checkLogin (context) {
+  async checkLogin (context, router) {
     try {
       const cAuth = Cookie.get('Authorization')
       if (typeof cAuth === 'undefined') {
-        throw new TypeError('not logged in.')
+        throw new TypeError('멤버만 볼 수 있는 컨텐츠입니다.')
       }
       const auth = JSON.parse(cAuth)
       const resAccess = await this.$axios.$post('/auth/verify', {
@@ -58,12 +58,17 @@ export const actions = {
         }
         context.commit('setLogin', auth)
       } else {
-        throw new TypeError('token expired.')
+        throw new TypeError('토큰이 만료되었습니다. 다시 로그인 해 주세요.')
       }
     } catch (err) {
       // invalid cookie and logout.
-      console.log(err)
+      console.table(err)
       context.commit('logout')
+      context.dispatch('snackbar/setAlert', {
+        snack: err.message,
+        type: 'error'
+      }, { root: true })
+      router.push('/')
     }
   }
 }

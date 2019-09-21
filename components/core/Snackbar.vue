@@ -1,32 +1,37 @@
 <template lang="pug">
-  v-snackbar(
+  v-snackbar.text-center(
     v-model="show"
-    :timeout="5000"
+    :timeout="50000"
     :top="true"
-    :success="$store.state.snackbar.type === 'success'"
-    :info="$store.state.snackbar.type === 'info'"
-    :warning="$store.state.snackbar.type === 'warning'"
-    :error="$store.state.snackbar.type === 'error'"
+    :color="type"
   )
-    | {{ $store.state.snackbar.snack }}
-    v-btn(@click.native="show = false") Close
+    v-spacer
+    v-card-text.pa-0.subtitle-1.Sans {{ snack }}
+    v-spacer
+    v-btn.ma-0.Sans(text @click.native="show = false") 닫기
 </template>
 
 <script>
 export default {
   data () {
-    return {
-      show: false
-    }
+    return {}
   },
-  created () {
-    this.$store.watch(state => state.snackbar.snack, () => {
-      const msg = this.$store.state.snackbar.snack
-      if (msg !== '') {
-        this.show = true
-        this.$store.commit('snackbar/setSnack', '', '')
-      }
-    })
+  computed: {
+    snack: {
+      get () { return this.$store.state.snackbar.snack },
+      set (value) { this.$store.commit('snackbar/SET_SNACK', value) }
+    },
+    type: {
+      get () {
+        console.log(this.$store.state.snackbar.type)
+        return this.$store.state.snackbar.type
+      },
+      set (value) { this.$store.commit('snackbar/SET_TYPE', value) }
+    },
+    show: {
+      get () { return this.$store.state.snackbar.show },
+      set (value) { this.$store.commit('snackbar/SET_SHOW', value) }
+    }
   }
 }
 </script>

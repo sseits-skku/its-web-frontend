@@ -37,7 +37,7 @@ export default {
     }
   },
   mounted () {
-    this.$store.dispatch('auth/checkLogin')
+    this.$store.dispatch('auth/checkLogin', this.$router)
     this.onResize()
     window.addEventListener('resize', this.onResize, { passive: true })
   },
@@ -72,5 +72,9 @@ export default {
 .headline.Serif, .title.Serif, .subtitle-1.Serif, .subtitle-2.Serif,
 .body-1.Serif, .body-2.Serif, .caption.Serif, .overline.Serif {
   font-family: 'Noto Serif KR' !important;
+}
+.WhiteShadow {
+  color: whitesmoke;
+  text-shadow: 0 0 5px black;
 }
 </style>

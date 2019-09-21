@@ -9,7 +9,7 @@
         v-spacer/
         v-btn.red(rounded @click.native="diaOpen = false")
           v-icon mdi-close
-      v-card-text
+      v-card-text.mt-4
         v-text-field(
           v-model="id"
           label="Login"
@@ -69,7 +69,7 @@ export default {
           username: this.id,
           refresh,
           access,
-          isStaff: !!(info.is_staff | info.is_superuser)
+          isAdmin: !!(info.is_staff | info.is_superuser)
         })
         this.id = ''
         this.pw = ''
