@@ -12,9 +12,7 @@
         td.text-center {{ item.caption }}
         td.text-center
           div(v-if="item.file")
-            v-btn(v-if="!item.token" @click.native="openRequest(i)" fab x-small)
-              v-icon mdi-file-download-outline
-            v-btn.primary(v-else :href="item.token" fab x-small)
+            v-btn(:href="`edu/download/${item.id}`" fab x-small)
               v-icon mdi-file-check-outline
         td.text-center {{ item.owner }}
 </template>
@@ -50,7 +48,7 @@ export default {
     async getEdu () {
       let list
       if (this.category !== 0) {
-        list = await this.$axios.$get(`/edu/entry?category=${this.category}`)
+        list = await this.$axios.$get(`/edu/entry?category=${this.category}`, { withCredentials: true })
           .catch((err) => {
             this.items = this.failed
             throw err
@@ -64,30 +62,6 @@ export default {
       }
       console.log(list.results)
       this.items = list.results
-    },
-    async openRequest (i) {
-      const fileId = this.items[i].file
-      // header need.
-      const plain = this.$store.dispatch('axios/plainPost', `/media/open/${fileId}`, {})
-      
-      this.$axios.setHeader('Authorization', 'Bearer ' +
-        this.$store.state.auth.accessToken)
-      const openResult = this.$axios.$post('/media/open', {
-        file_id: fileId
-      }).catch((err) => {
-        this.$store.dispatch('snackbar/setAlert', {
-          snack: '회원만 열람 가능한 자료입니다.',
-          type: 'error'
-        })
-        console.log(err)
-      })
-      const obj = this.items[i]
-      obj.token = `http://localhost:8000/media/${(await openResult).token}`
-      this.$store.dispatch('snackbar/setAlert', {
-        snack: '다운로드 하려면 한번 더 클릭하세요.',
-        type: 'success'
-      })
-      this.$set(this.items, i, obj)
     }
   }
 }

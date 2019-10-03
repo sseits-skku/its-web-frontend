@@ -37,6 +37,7 @@ export default {
   },
   mounted () {
     this.onResize()
+    this.$store.dispatch('axios/isLogin', { axios: this.$axios })
     window.addEventListener('resize', this.onResize, { passive: true })
   },
   methods: {
