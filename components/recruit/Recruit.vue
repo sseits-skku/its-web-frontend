@@ -62,54 +62,6 @@
                   label="전화번호 ('-' 없이 작성)"
                   :rules="[rules.phone_num]"
                 )
-              v-card-title.display-1.Sans 적성 확인
-              v-card-text.Sans (솔직하게 답변해 주세요)
-              v-card-text.text--primary.mt-2.pb-1
-                v-divider
-                v-row.align-center
-                  v-col.text-right.title.Sans 나는 프로그래밍을<br>{{ pSkill.items[pSkill.select] }}
-                  v-col
-                    v-slider.Sans(
-                      v-model="pSkill.select"
-                      min="0"
-                      max="4"
-                      vertical
-                      :tick-labels="pSkill.level"
-                    )
-                v-divider
-                v-row.align-center
-                  v-col.text-right.title.Sans 나는 게임을<br>{{ gSkill.items[gSkill.select] }}
-                  v-col
-                    v-slider.Sans(
-                      v-model="gSkill.select"
-                      min="0"
-                      max="4"
-                      vertical
-                      :tick-labels="gSkill.level"
-                    )
-                v-divider
-                v-row.align-center
-                  v-col.text-right.title.Sans 나는 사람들과 친해지기<br>{{ hSkill.items[hSkill.select] }}
-                  v-col
-                    v-slider.Sans(
-                      v-model="hSkill.select"
-                      min="0"
-                      max="4"
-                      vertical
-                      :tick-labels="hSkill.level"
-                    )
-                v-divider
-                v-row.align-center
-                  v-col.text-right.title.Sans 나는 미(美)적 감각이<br>{{ vSkill.items[vSkill.select] }}
-                  v-col
-                    v-slider.Sans(
-                      v-model="vSkill.select"
-                      min="0"
-                      max="4"
-                      vertical
-                      :tick-labels="vSkill.level"
-                    )
-                v-divider
               v-card-actions
                 v-spacer
                 v-btn.success.Sans(@click.native="step = 3") 다음

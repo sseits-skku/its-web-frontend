@@ -24,7 +24,7 @@
     )
       v-list-item-group
         template(
-          v-if="$store.state.auth.username !== '' | true"
+          v-if="$store.state.axios.username !== '' | true"
         )
           v-list-item(
             v-for="item in allItems"
@@ -36,7 +36,7 @@
             v-list-item-content
               v-list-item-title(v-text="item.title")
         template(
-          v-if="$store.state.auth.username !== '' | true"
+          v-if="$store.state.axios.username !== '' | true"
         )
           v-divider()
           v-subheader.text-center.subtitle-1(inset) Member Zone
@@ -50,7 +50,7 @@
             v-list-item-content
               v-list-item-title(v-text="item.title")
         template(
-          v-if="$store.state.auth.isAdmin | true"
+          v-if="$store.state.axios.isAdmin | true"
         )
           v-divider()
           v-subheader.text-center.subtitle-1(inset) Admin Zone
@@ -64,12 +64,12 @@
             v-list-item-content
               v-list-item-title(v-text="item.title")
     template(v-slot:append)
-      div.px-2.pb-2(v-if="$store.state.auth.username === ''")
-        v-btn.green.lighten-1(block @click.native="openDialog")
+      div.px-2.pb-2(v-show="$store.state.axios.username === ''")
+        v-btn.green.lighten-1(block @click.native="$store.commit('setLoginDialogOpen', true)")
           v-icon(left) mdi-lock-open
           | MEMBER LOGIN
-      div.px-2.pb-2(v-if="$store.state.auth.username !== ''")
-        v-btn.red.accent-2(block @click.native="logout")
+      div.px-2.pb-2(v-show="$store.state.axios.username !== ''")
+        v-btn.red.accent-2(block @click.native="$store.dispatch('axios/logout', { axios: $axios, router: $router })")
           v-icon(left) mdi-logout-variant
           | LOGOUT
 </template>
@@ -107,17 +107,7 @@ export default {
     }
   },
   methods: {
-    logout () {
-      this.$store.commit('auth/logout')
-    },
-    openDialog () {
-      this.$store.commit('setLoginDialogOpen', true)
-    },
-    goPage (id) {
-      typeof id === 'undefined'
-        ? this.$router.push('/')
-        : this.$router.push(`/${id}`)
-    }
+    goPage (id) { this.$router.push(typeof id === 'undefined' ? '/' : `/${id}`) }
   }
 }
 </script>

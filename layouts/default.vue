@@ -27,8 +27,7 @@ export default {
   data () {
     return {
       drawer: false,
-      dialog: false,
-      isauth: false
+      dialog: false
     }
   },
   beforeDestroy () {
@@ -37,8 +36,8 @@ export default {
     }
   },
   mounted () {
-    this.$store.dispatch('auth/checkLogin', this.$router)
     this.onResize()
+    this.$store.dispatch('axios/isLogin', { axios: this.$axios })
     window.addEventListener('resize', this.onResize, { passive: true })
   },
   methods: {
@@ -54,9 +53,7 @@ export default {
     }
   },
   head () {
-    return this.$store.state.auth.auth === null
-      ? { title: 'SSE-ITS Website' }
-      : { title: 'ITS Member zone' }
+    return { title: 'SSE-ITS Website' }
   }
 }
 </script>

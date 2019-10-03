@@ -1,8 +1,7 @@
 import webpack from 'webpack'
 
 export default {
-  // mode: 'universal',
-  mode: 'spa',
+  mode: 'spa', // 'universal'
   /*
   ** Headers of the page
   */
@@ -55,7 +54,9 @@ export default {
   ** See https://axios.nuxtjs.org/options
   */
   axios: {
-    baseURL: 'http://localhost:8000'
+    baseURL: 'http://localhost:8000',
+    debug: true,
+    credentials: true
   },
   webfontloader: {
     google: {

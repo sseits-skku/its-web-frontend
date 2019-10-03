@@ -57,27 +57,14 @@ export default {
   methods: {
     async postLogin () {
       this.isPending = true
-      try {
-        const { access, refresh } = await this.$axios.$post('/auth/', {
-          username: this.id,
-          password: this.pw
-        })
-        const userId = JSON.parse(atob(access.split('.')[1])).user_id
-        this.$axios.setHeader('Authorization', 'Bearer ' + access)
-        const info = await this.$axios.$get(`/account/user/${userId}`)
-        this.$store.commit('auth/setLogin', {
-          username: this.id,
-          refresh,
-          access,
-          isAdmin: !!(info.is_staff | info.is_superuser)
-        })
-        this.id = ''
-        this.pw = ''
-        this.diaOpen = false
-        this.isPending = false
-      } catch (err) {
-        console.log(err)
-      }
+      await this.$store.dispatch('axios/doLogin', {
+        axios: this.$axios,
+        obj: { username: this.id, password: this.pw }
+      })
+      this.id = ''
+      this.pw = ''
+      this.diaOpen = false
+      this.isPending = false
     }
   }
 }
